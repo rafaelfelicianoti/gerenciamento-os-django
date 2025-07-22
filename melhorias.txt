@@ -1,0 +1,9 @@
+- Implementar:
+
+    - serializer
+    - usar response ao invez de json response
+    - Autenticacao
+    - Admin
+    -.gitignore para nao subir o .env 
+    - adicionr credenciais do banco de dados em um arquivo
+    - dependencias e docker

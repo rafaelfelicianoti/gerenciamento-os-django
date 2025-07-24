@@ -5,5 +5,103 @@
     - Autenticacao
     - Admin
     -.gitignore para nao subir o .env 
+    .gitignore, requirements.txt
     - adicionr credenciais do banco de dados em um arquivo
     - dependencias e docker
+    - Adicione logs para debug:
+    ✅ Testes unitários com pytest ou unittest
+
+    ✅ Serializers com validações personalizadas
+
+    ✅ Documentação da API com Swagger
+
+    ✅ Arquivo README.md completo com prints do Swagger e instruções para rodar localmente
+
+    ✅ Deploy gratuito no Render ou Railway
+
+
+    1. Client
+1. Cliente
+id – Auto increment / Auto incremento
+
+name – Full name or company / Nome completo ou razão social
+
+email – Contact email / E-mail de contato
+
+phone – Phone number / Telefone
+
+cpf_cnpj – Brazilian ID (CPF/CNPJ) / CPF ou CNPJ
+
+address – Full address / Endereço completo
+
+2. Employee (optional for assignments/authentication)
+2. Funcionário (opcional para atribuições/autenticação)
+id – Auto increment
+
+name – Employee name / Nome do funcionário
+
+role – Role or position / Cargo ou função
+
+email – Institutional email / E-mail institucional
+
+phone – Contact phone / Telefone de contato
+
+3. Quote / Budget
+3. Orçamento
+id – Auto increment
+
+client – ForeignKey to Client / Relação com Cliente
+
+general_description – Optional description / Descrição geral (opcional)
+
+created_at – Creation date / Data de criação
+
+approved – Boolean: approved or not / Aprovado (True/False)
+
+labor_cost – Total labor value / Valor de mão de obra
+
+materials_cost – Total material value / Valor de materiais
+
+total_value – Auto-calculated: labor + materials + items
+
+Calculado: mão de obra + materiais + itens
+
+4. Quote Item
+4. Item do Orçamento
+id – Auto increment
+
+quote – ForeignKey to Quote / Relação com orçamento
+
+service_description – Detailed description / Descrição do serviço
+
+value – Value of the service / Valor unitário
+
+5. Work Order (Service Order)
+5. Ordem de Serviço
+id – Auto increment
+
+quote – ForeignKey to Quote / Relação com orçamento
+
+assigned_employee – ForeignKey to Employee (optional)
+
+Funcionário responsável (opcional)
+
+problem_description – Reported problem / Descrição do problema
+
+opened_at – Opening date / Data de abertura
+
+completed_at – Completion date (nullable) / Data de conclusão (pode ser nula)
+
+status – Status of the work order / Status da OS
+
+Choices / Opções:
+
+"open" – Aberta
+
+"in_progress" – Em andamento
+
+"completed" – Concluída
+
+"canceled" – Cancelada
+
+total_value – Total value (from approved quote) / Valor total (herdado do orçamento)

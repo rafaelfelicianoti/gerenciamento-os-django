@@ -1,6 +1,7 @@
 - Implementar:
 
     - serializer
+    - soma servico + material
     - usar response ao invez de json response
     - Autenticacao
     - Admin

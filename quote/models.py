@@ -42,9 +42,15 @@ class Quote(models.Model):
     total_value = models.DecimalField(
         max_digits=10, 
         decimal_places=2, 
-        default=0.00
+        default=0.00,
+        editable=False
     )
     
     created_at = models.DateTimeField(auto_now_add=True)
+
+    # calcula o total de material e servico
+    def save(self, *args, **kwargs):
+        self.total_value = self.labor_cost + self.materials_cost
+        super().save(*args, **kwargs)
 
 

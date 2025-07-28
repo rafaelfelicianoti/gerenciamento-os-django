@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'client',
     'employee',
     'quote',
+    'work_order',
 ]
 
 MIDDLEWARE = [

@@ -1,5 +1,7 @@
 - Implementar:
 
+    - permicao para funcionario
+    - retornar orcamento e ordem de serviço por client
     - serializer
     - soma servico + material
     - usar response ao invez de json response

@@ -23,21 +23,18 @@ class QuoteView(APIView):
         serializer = QuoteSerializer(quote, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
     
-    def get_object(self, pk):
-        try:
-            return Quote.objects.get(pk=pk)
-        except Quote.DoesNotExist:
-            raise Http404
-        
 
 @method_decorator(csrf_exempt, name='dispatch') 
 class QuoteDetailView(APIView):
+     
+    # busca o quote pelo id
     def get_object(self, pk):
         try:
             return Quote.objects.get(pk=pk)
         except Quote.DoesNotExist:
             raise Http404
 
+    # faz o get de acodo como id
     def get(self, request, pk, format=None):
         quote = self.get_object(pk)
         serializer = QuoteSerializer(quote)
@@ -48,7 +45,7 @@ class QuoteDetailView(APIView):
         serializer = QuoteSerializer(quote, data=request.data)
         if serializer.is_valid():
             quote = serializer.save()
-            return Response(QuoteSerializer(quote).data, status=status.HTTP_201_CREATED)
+            return Response(QuoteSerializer(quote).data, status=status.HTTP_200_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
     def delete(self, request, pk, format=None):

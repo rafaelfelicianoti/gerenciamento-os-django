@@ -35,8 +35,3 @@ class WorkOrder(models.Model):
         if self.quote.status == 'aprovado':
             return self.quote.total_value
 
-    # sava apenas se o orcamento estiver aprovado
-    def save(self, *args, **kwargs): 
-        if self.quote.status != 'aprovado':
-            raise ValidationError("Orçamento nao esta aprovado")
-        super().save(*args, **kwargs)

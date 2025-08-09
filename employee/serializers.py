@@ -13,7 +13,7 @@ class EmployeeSerializer(serializers.ModelSerializer):
         write_only=True,
         min_length=4,
         error_messages={
-            "min_length": "A senha precisa ter pelo menos 6 caracteres."
+            "min_length": "A senha precisa ter pelo menos 4 caracteres."
         }
     )
 

@@ -23,12 +23,22 @@ class WorkOrder(models.Model):
 
     opened_at = models.DateTimeField(auto_now_add=True)
 
-    completed_at = models.DateField()
+    completed_at = models.DateField(null=True, blank=True)
 
     status = models.CharField(
         max_length=20,
-        choices=STATUS_CHOICES
+        choices=STATUS_CHOICES,
+            default='aberto'
     )
+
+    "Só é possível criar uma OS com orçamento aprovado."
+    def clean(self):
+        if self.quote.status != 'aprovado':
+             raise ValidationError('O orçamento precisa estar aprovado.')
+
+    def save(self, *args, **kwargs):
+        self.full_clean()   
+        super().save(*args, **kwargs)
 
     @property
     def total_value(self):

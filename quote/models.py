@@ -58,4 +58,6 @@ class Quote(models.Model):
         self.total_value = self.labor_cost + self.materials_cost
         super().save(*args, **kwargs)
 
+    def __str__(self):
+        return f"Orçamento #{self.id} - {self.client}"
 

@@ -42,6 +42,5 @@ class WorkOrder(models.Model):
 
     @property
     def total_value(self):
-        if self.quote.status == 'aprovado':
-            return self.quote.total_value
+        return self.quote.total_value if self.quote else None
 

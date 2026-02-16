@@ -3,12 +3,9 @@ from .serializers import QuoteSerializer
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.views import APIView
-from django.views.decorators.csrf import csrf_exempt
-from django.utils.decorators import method_decorator
 from django.http import Http404
 
 
-@method_decorator(csrf_exempt, name='dispatch') 
 class QuoteView(APIView):
 
     def post(self, request):
@@ -24,7 +21,6 @@ class QuoteView(APIView):
         return Response(serializer.data, status=status.HTTP_200_OK)
     
 
-@method_decorator(csrf_exempt, name='dispatch') 
 class QuoteDetailView(APIView):
      
     # busca o quote pelo id
@@ -45,7 +41,7 @@ class QuoteDetailView(APIView):
         serializer = QuoteSerializer(quote, data=request.data)
         if serializer.is_valid():
             quote = serializer.save()
-            return Response(QuoteSerializer(quote).data, status=status.HTTP_200_CREATED)
+            return Response(QuoteSerializer(quote).data, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
     def delete(self, request, pk, format=None):

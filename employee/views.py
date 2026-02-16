@@ -40,6 +40,7 @@ class EmployeeDetailView(APIView):
 
     def delete(self, request, pk):
         employee = self.get_object(pk)
-        employee.user.delete()  
+        if employee.user:
+            employee.user.delete()  
         employee.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)

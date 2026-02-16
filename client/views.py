@@ -3,13 +3,9 @@ from .serializers import ClientSerializer
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.views import APIView
-from django.views.decorators.csrf import csrf_exempt
-from django.utils.decorators import method_decorator
 from django.http import Http404
 
 
-
-@method_decorator(csrf_exempt, name='dispatch') 
 class ClientView(APIView):
     
     def post(self, request):
@@ -23,9 +19,8 @@ class ClientView(APIView):
         client = Client.objects.all()
         serializer = ClientSerializer(client, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
-    
-@method_decorator(csrf_exempt, name='dispatch') 
-class ClienDetailView(APIView):
+
+class ClientDetailView(APIView):
     
     def get_object(self, pk):
         try:

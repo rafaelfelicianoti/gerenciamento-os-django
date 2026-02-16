@@ -1,15 +1,11 @@
 from rest_framework.response import Response
 from rest_framework import status
-from django.views.decorators.csrf import csrf_exempt
-from django.utils.decorators import method_decorator
 from .serializers import WorkOrderSerializer
 from rest_framework.views import APIView
 from .models import WorkOrder
-
 from django.http import Http404
 
 
-@method_decorator(csrf_exempt, name='dispatch')
 class WorkOrderView(APIView):
 
     def post(self, request):
@@ -25,7 +21,6 @@ class WorkOrderView(APIView):
         serializer = WorkOrderSerializer(work_order, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
-@method_decorator(csrf_exempt, name='dispatch')
 class WorkOrderDetailView(APIView):
      
     # busca o quote pelo id

@@ -44,4 +44,4 @@ class ClientDetailView(APIView):
     def delete(self, request, pk, format=None):
         client = self.get_object(pk)
         client.delete()
-        return Response(status.HTTP_204_NO_CONTENT)
+        return Response(status=status.HTTP_204_NO_CONTENT)

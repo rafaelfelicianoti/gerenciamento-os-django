@@ -55,7 +55,8 @@ class Quote(models.Model):
 
     # calcula o total de material e servico
     def save(self, *args, **kwargs):
-        self.total_value = self.labor_cost + self.materials_cost
+        # ensure Decimal addition (avoid string concatenation)
+        self.total_value = Decimal(str(self.labor_cost)) + Decimal(str(self.materials_cost))
         super().save(*args, **kwargs)
 
     def __str__(self):
